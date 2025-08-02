@@ -20,3 +20,4 @@ export const verifyJWT = async (req, res, next) => {
     console.log("Error: ", error);
   }
 };
+

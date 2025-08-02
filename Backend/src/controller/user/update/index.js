@@ -1,6 +1,7 @@
 import prisma from "../../../db/db.js";
 import ApiError from "../../../utils/ApiError.js";
 import ApiResponse from "../../../utils/ApiResponse.js";
+import bcrypt from "bcrypt";
 
 // Update User
 export const updateUser = async (req, res) => {
@@ -35,5 +36,31 @@ export const updateUser = async (req, res) => {
   } catch (error) {
     console.error("Error in updateUser:", error);
     return ApiError(res, 500, "Internal Server Error", error);
+  }
+};
+
+export const changePassword = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const { oldPassword, newPassword, confirmPassword } = req.body;
+
+    if (!newPassword === confirmPassword)
+      return ApiError(res, 400, "Password Did not Match");
+    const user = await prisma.user.findUnique({
+      where: { id: Number(userId) },
+    });
+
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) return ApiError(res, 400, "Old Password Is Incorrect");
+    await prisma.user.update({
+      where: { id: userId },
+      data: { password: newPassword },
+    });
+
+    return ApiResponse(res, 200, "Password Changed Successfully");
+  } catch (error) {
+    console.error("Error in changePassword");
+    return ApiResponse(res, 500, "Internal Server Error", error);
   }
 };

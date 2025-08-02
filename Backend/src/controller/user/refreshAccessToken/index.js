@@ -30,6 +30,7 @@ export const refreshAccessToken = async (req, res) => {
     const options = {
       httpOnly: true,
       secure: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     };
 
     const accessToken = generateAccessToken(user);

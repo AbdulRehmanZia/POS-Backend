@@ -2,7 +2,7 @@ import prisma from "../../../db/db.js";
 import { generateEmailTemplate, sendEmail } from "../../../services/email.service.js";
 import ApiError from "../../../utils/ApiError.js";
 import ApiResponse from "../../../utils/ApiResponse.js";
-import { registerMemberValidation, registerValidation } from "../../../utils/validationSchema.js";
+import {registerValidation } from "../../../utils/validationSchema.js";
 
 
 //Create User

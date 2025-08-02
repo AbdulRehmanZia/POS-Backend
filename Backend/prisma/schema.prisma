@@ -12,6 +12,8 @@ model User {
   email        String   @unique
   createdAt    DateTime @default(now())
   password     String
+  resetToken String?
+  resetTokenExpiry DateTime?
   fullname     String
   profileImg   String?
   refreshToken String?

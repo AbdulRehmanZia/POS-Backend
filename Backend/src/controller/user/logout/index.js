@@ -13,6 +13,7 @@ export const logoutUser = async (req, res) => {
     const options = {
       httpOnly: true,
       secure: true,
+       maxAge: 7 * 24 * 60 * 60 * 1000 
     };
 
     res.clearCookie("accessToken", options);

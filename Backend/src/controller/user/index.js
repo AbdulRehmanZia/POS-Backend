@@ -2,11 +2,12 @@
 
 import { getUsers } from "./get/index.js";
 import { registerUser } from "./post/index.js";
-import { updateUser } from "./update/index.js";
+import { updateUser, changePassword } from "./update/index.js";
 import { deleteUser } from "./delete/index.js";
 import { loginUser } from "./login/index.js";
 import { logoutUser } from "./logout/index.js";
 import { refreshAccessToken } from "./refreshAccessToken/index.js";
+import { forgetPassword, resetPassword } from "./forgetPassword/index.js";
 
 //Exporting All Controllers
 
@@ -17,5 +18,8 @@ export {
   deleteUser,
   logoutUser,
   loginUser,
-  refreshAccessToken
+  refreshAccessToken,
+  changePassword,
+  forgetPassword,
+  resetPassword,
 };
