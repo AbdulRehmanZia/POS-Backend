@@ -20,7 +20,7 @@ router.post("/register", registerUser);
 router.post("/login", loginUser);
 
 //Protected
-router.get("/get", verifyJWT, getUsers);
+router.get("/", verifyJWT, getUsers);
 router.post("/logout", verifyJWT, logoutUser);
 router.put("/update/:id", verifyJWT, updateUser);
 router.put("/change-password", verifyJWT, changePassword)
